@@ -1,0 +1,25 @@
+# Compiled protocol buffers
+*.pb.h
+*.pb.cc
+*_pb2.py
+
+# PyCharm files
+.idea
+
+# Visual Studio Code files
+.vscode
+
+# Visual Studio files
+.vs
+
+# build, distribute, and bins (+ python proto bindings)
+build
+.build_debug/*
+.build_release/*
+distribute/*
+*.testbin
+*.bin
+python/caffe/proto/
+cmake_build
+.cmake_build
+cmake-build-debug

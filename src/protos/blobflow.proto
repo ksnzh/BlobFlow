@@ -1,0 +1,56 @@
+message Datum{
+    optional int32 channels=1;
+    optional int32 height=2;
+    optional int32 width=3;
+    optional int32 label=4;
+    optional bytes data=5;
+    repeated float float_data=6 [packed=true];
+    optional bool encoded=7 [default=false];
+}
+
+message BlobShape{
+    repeated int64 dim=1 [packed=true];
+}
+
+message FillerParameter{
+    optional string type=1 [default='constant'];
+    optional float value=2 [default=0];
+    optional float low=3 [default=0];
+    optional float high=4 [default=1];
+    optional float mean=5 [default=0];
+    optional float std=6 [default=1];
+    optional int32 sparse=7 [default=-1];
+    enum VarianceNorm{FAN_IN=0;FAN_OUT=1;AVG=2;}
+    optional VarianceNorm variance_norm=8 [default=FAN_IN];
+}
+
+message BlobProto {
+  optional BlobShape shape = 7;
+  repeated float data = 5 [packed = true];
+  repeated float diff = 6 [packed = true];
+  repeated double double_data = 8 [packed = true];
+  repeated double double_diff = 9 [packed = true];
+  optional int32 num = 1 [default = 0];
+  optional int32 channels = 2 [default = 0];
+  optional int32 height = 3 [default = 0];
+  optional int32 width = 4 [default = 0];
+}
+
+enum Phase{TRAIN=0;TEST=1;}
+
+message ParamSpec{
+    optional string name=1;
+    optional float lr_mult=3 [default=1.0];
+    optional float decay_mult=4 [default=1.0];
+}
+
+message LayerParameter{
+    optional string name=1;
+    optional string type=2;
+    repeated string bottom=3;
+    repeated string top=4;
+    optional Phase phase=10;
+    repeated float loss_weight=5;
+    repeated ParamSpec param=6;
+    repeated BlobProto blobs=7;
+}
