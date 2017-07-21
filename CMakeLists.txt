@@ -6,3 +6,6 @@ set(CMAKE_CXX_STANDARD 11)
 set(INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
 include_directories(${INCLUDE_DIR})
 include_directories(${PROJECT_SOURCE_DIR}/src)
+
+add_subdirectory(target/exec)
+add_subdirectory(target/python)
